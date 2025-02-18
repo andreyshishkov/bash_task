@@ -28,3 +28,5 @@ most_popular_url="$(awk '{counts[$7]++} END {
 )"
 
 echo -e "Самый популярный URL:\t${most_popular_url}" >> report.txt
+
+echo "Отчет сохранен в файл report.txt"
