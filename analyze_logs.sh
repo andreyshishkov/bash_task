@@ -14,4 +14,4 @@ echo -e "Количество уникальных IP-адресов:\t${unique_
 echo -e "" >> report.txt
 
 echo "Количество запросов по методам:" >> report.txt
-awk '{split($6, words, " "); sub(/"/, "", words[1]); counts[words[1]]++} END {for (val in counts) print "\t", counts[val], val}' $logs_file >> report.txt
+awk '{sub(/"/, "", $6); counts[$6]++} END {for (val in counts) print "\t", counts[val], val}' $logs_file >> report.txt
