@@ -10,3 +10,8 @@ echo -e "Общее количество запросов:\t${total_requests}" >
 
 unique_ip_count="$(awk '!U[$1]++{count++} END {print count}' $logs_file)"
 echo -e "Количество уникальных IP-адресов:\t${unique_ip_count}" >> report.txt
+
+echo -e "" >> report.txt
+
+echo "Количество запросов по методам:" >> report.txt
+awk '{split($6, words, " "); sub(/"/, "", words[1]); counts[words[1]]++} END {for (val in counts) print "\t", counts[val], val}' $logs_file >> report.txt
